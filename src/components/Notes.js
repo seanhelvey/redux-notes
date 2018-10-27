@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
 import Note from './Note';
 
@@ -16,4 +17,12 @@ const Notes = (props) => {
   );
 }
 
-export default Notes;
+function mapStateToProps(state) {
+  return {
+    notes: []
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(Notes);
