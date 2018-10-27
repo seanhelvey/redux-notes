@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
 import Note from './Note';
 
@@ -8,7 +9,7 @@ const Notes = (props) => {
       { 
         props.notes.length > 0 ?
         props.notes.map(note => {
-          return <Note text={note.text}></Note>
+          return <Note key={note} text={note.text}></Note>
         }) :
         <Note text={"Add some notes"}></Note>
       }
@@ -16,4 +17,12 @@ const Notes = (props) => {
   );
 }
 
-export default Notes;
+function mapStateToProps(state) {
+  return {
+    notes: state.notes
+  };
+}
+
+export default connect(
+  mapStateToProps
+)(Notes);
