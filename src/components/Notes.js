@@ -9,7 +9,7 @@ const Notes = (props) => {
       { 
         props.notes.length > 0 ?
         props.notes.map(note => {
-          return <Note key={note} text={note.text}></Note>
+          return <Note text={note.text}></Note>
         }) :
         <Note text={"Add some notes"}></Note>
       }

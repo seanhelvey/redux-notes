@@ -1,20 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
 
-class AddNoteForm extends Component {
-
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.props.addNote}>
-        <input onChange={this.props.inputChange}></input>
-        <button>Submit</button>
-      </form>
-    );
-  }
+const AddNoteForm = (props) => {
+  return (
+    <form onSubmit={props.formSubmit}>
+      <input onChange={props.inputChange}></input>
+      <button>Submit</button>
+    </form>
+  );
 }
 
-export default AddNoteForm;
+const mapDispatchToProps = (dispatch) => ({
+  inputChange: (event)=> {
+    dispatch({ type: 'EDIT_NOTE', text: event.target.value })
+  },
+  formSubmit: (event)=> {
+    event.preventDefault()
+    dispatch({ type: 'ADD_NOTE'})
+  },  
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddNoteForm);
