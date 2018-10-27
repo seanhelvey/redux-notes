@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import Notes from './components/Notes'
+import AddNoteForm from './components/AddNoteForm'
+
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      newNote: "",
+      notes: []
+    }
+  }
+
+  inputChange = (event) => {
+    event.preventDefault()
+    this.setState({
+      newNote: event.target.value
+    })
+  }
+
+  addNote = (event) => {
+    event.preventDefault()
+    this.setState({
+      notes: this.state.notes.concat({
+        text: this.state.newNote
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <AddNoteForm inputChange={this.inputChange} addNote={this.addNote}></AddNoteForm>
+        <Notes notes={this.state.notes}></Notes>
       </div>
     );
   }
