@@ -15,6 +15,18 @@ const initialState = {
 
 function reducer(state = initialState, action){
     switch(action.type) {
+        case "EDIT_NOTE":
+            return {
+                newNote: action.text,
+                notes: state.notes
+            }
+        case "ADD_NOTE":
+            return {
+                newNote: state.newNote,
+                notes: state.notes.concat({
+                    text: state.newNote
+                })
+            }
         default:
             return state;
     }
