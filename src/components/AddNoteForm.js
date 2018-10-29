@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
 
 class AddNoteForm extends Component {
@@ -17,4 +18,17 @@ class AddNoteForm extends Component {
   }
 }
 
-export default AddNoteForm;
+const mapDispatchToProps = (dispatch) => ({
+  inputChange: (event) => {
+    dispatch({ type: 'EDIT_NOTE', text: event.target.value })
+  },
+  formSubmit: (event) => {
+    event.preventDefault()
+    dispatch({ type: 'ADD_NOTE' })
+  },  
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddNoteForm);
