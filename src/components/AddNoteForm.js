@@ -16,13 +16,14 @@ class AddNoteForm extends Component {
       </form>
     );
   }
-}
+} 
 
 const mapDispatchToProps = (dispatch) => ({
   inputChange: (event) => {
+    console.log("event.target.value", event.target.value)
     dispatch({ type: 'EDIT_NOTE', text: event.target.value })
   },
-  formSubmit: (event) => {
+  addNote: (event) => {
     event.preventDefault()
     dispatch({ type: 'ADD_NOTE' })
   },  

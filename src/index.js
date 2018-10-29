@@ -18,12 +18,12 @@ const initialState = {
 function reducer(state = initialState, action) {
     console.log("reducer", action)
     switch(action.type) {
-      case action.type === "EDIT_NOTE":
+      case "EDIT_NOTE":
         return {
             newNote: action.text,
             notes: state.notes
         }
-      case action.type === "ADD_NOTE":
+      case "ADD_NOTE":
         return {
             newNote: state.newNote,
             notes: state.notes.concat({
