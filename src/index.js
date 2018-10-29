@@ -8,7 +8,9 @@ import * as serviceWorker from './serviceWorker';
 
 const initialState = {
     newNote: "",
-    notes: []
+    notes: [{
+        text: "test"
+    }]
 }
 
 function reducer(state = initialState, action){
@@ -18,7 +20,10 @@ function reducer(state = initialState, action){
     }
 }
 
-const store = createStore(reducer)
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 ReactDOM.render(
     <Provider store={store}>
